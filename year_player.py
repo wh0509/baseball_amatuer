@@ -31,7 +31,7 @@ def year_player(input_year):
         }
 
         year_team_df = pd.read_csv(os.path.join(year_class_path, "{}_info_list.csv".format(class_)))
-        year_player_df =  pd.DataFrame(columns=["team_class", "player_id", "player_name", "back", "position", "class_number", "height", "weight", "throws", "stand"])
+        year_player_df =  pd.DataFrame(columns=["team_class", "player_id", "player_name", "back", "position", "grade", "height", "weight", "throws", "stand"])
         year_team_id_list = list(year_team_df["team_id"].dropna().unique())
 
         for team_id in year_team_id_list:
@@ -75,7 +75,7 @@ def year_player(input_year):
                             
                             else:
 
-                                player_number = dd_list[0].find("span", class_="number").text
+                                player_number = re.findall('\d+',dd_list[0].find("span", class_="number").text)[0] if dd_list[0].find("span", class_="number") else None
                                 player_name = dd_list[0].find("span", class_="name").text
 
                         elif dt.text == "선수구분":
