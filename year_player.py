@@ -75,7 +75,7 @@ def year_player(input_year):
                             
                             else:
 
-                                player_number = re.findall('\d+',dd_list[0].find("span", class_="number").text)[0] if dd_list[0].find("span", class_="number") else None
+                                player_number = re.findall('\d+',dd_list[0].find("span", class_="number").text)[0] if dd_list[0].find("span", class_="number").text.strip()!='' else None
                                 player_name = dd_list[0].find("span", class_="name").text
 
                         elif dt.text == "선수구분":
